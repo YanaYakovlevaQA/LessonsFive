@@ -15,7 +15,7 @@ public class solutionsEnterprize {
         Configuration.browserSize = "1920x1980";
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://github.com";
-        Configuration.holdBrowserOpen = true; //конфигурация для проверки теста
+       //Configuration.holdBrowserOpen = true; конфигурация для проверки теста
     }
 
     @Test
@@ -26,7 +26,11 @@ public class solutionsEnterprize {
 
         //Открытие Solutions
         $(withTagAndText("button", "Solutions")).hover();
+
+        //Клик по Enterprises
         $(byText("Enterprises")).click();
+
+        //Проверка
         $("#hero-section-brand-heading").shouldHave(exactText("The AI-powered\ndeveloper platform"));
 }
 }
