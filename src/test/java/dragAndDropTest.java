@@ -1,34 +1,44 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.DragAndDropOptions.to;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class dragAndDropTest {
+
     @BeforeAll
     static void setUp () {
         Configuration.browserSize = "1920x1980";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.baseUrl = "https://github.com";
-        //Configuration.holdBrowserOpen = true; конфигурация для проверки теста
     }
 
     @Test
-    void solutionsEnterprize() {
+    void dragAndDropTest() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
 
-        //Открытие github
-        open("/git-guides");
+        SelenideElement columnA = $("#column-a");
+        SelenideElement columnB = $("#column-b");
 
-        //Открытие Solutions
-        $(withTagAndText("button", "Solutions")).hover();
+        $(columnA).shouldHave(text("A"));
+        $(columnB).shouldHave(text("B"));
 
-        //Клик по Enterprises
-        $(byText("Enterprises")).click();
+        WebElement beginning = columnA.toWebElement();
+        WebElement end = columnB.toWebElement();
 
-        //Проверка
-        $("#hero-section-brand-heading").shouldHave(exactText("The AI-powered\ndeveloper platform"));
+        Selenide.actions()
+                .clickAndHold(beginning)
+                .moveToElement(end)
+                .release()
+                .build()
+                .perform();
+
+        columnA.shouldHave(text("B"));
+        columnB.shouldHave(text("A"));
     }
 }
