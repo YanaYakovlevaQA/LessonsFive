@@ -41,4 +41,14 @@ public class dragAndDropTest {
         columnA.shouldHave(text("B"));
         columnB.shouldHave(text("A"));
     }
+
+    @Test
+    void dragAndDropTest2() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+
+        $("#column-a").dragAndDrop(to("#column-b"));
+
+        $("#column-a").shouldHave(text("B"));
+        $("#column-b").shouldHave(text("A"));
+}
 }
