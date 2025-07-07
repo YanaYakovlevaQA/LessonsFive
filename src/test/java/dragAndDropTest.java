@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class dragAndDropTest {
 
     @BeforeAll
-    static void setUp () {
+    static void setUp() {
         Configuration.browserSize = "1920x1980";
         Configuration.pageLoadStrategy = "eager";
     }
@@ -31,12 +31,7 @@ public class dragAndDropTest {
         WebElement beginning = columnA.toWebElement();
         WebElement end = columnB.toWebElement();
 
-        Selenide.actions()
-                .clickAndHold(beginning)
-                .moveToElement(end)
-                .release()
-                .build()
-                .perform();
+        Selenide.actions().clickAndHold(beginning).moveToElement(end).release().build().perform();
 
         columnA.shouldHave(text("B"));
         columnB.shouldHave(text("A"));
@@ -50,5 +45,5 @@ public class dragAndDropTest {
 
         $("#column-a").shouldHave(text("B"));
         $("#column-b").shouldHave(text("A"));
-}
+    }
 }
