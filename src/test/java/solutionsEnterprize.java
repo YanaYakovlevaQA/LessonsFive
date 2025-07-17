@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.withTagAndText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class solutionsEnterprize {
+public class SolutionsEnterprize {
 
     @BeforeAll
     static void setUp() {

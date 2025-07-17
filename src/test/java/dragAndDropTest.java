@@ -10,7 +10,7 @@ import static com.codeborne.selenide.DragAndDropOptions.to;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class dragAndDropTest {
+public class DragAndDropTest {
 
     @BeforeAll
     static void setUp() {
